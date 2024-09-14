@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xi5qqd8b25so"
-path="res://.godot/imported/pixil-frame-0-12.png-10b260599a6c2be606b879a4aa27f94b.ctex"
+path="res://.godot/imported/sentury.png-74bbb7e81ca62a58642c49aebc94612d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imports/pixil-frame-0-12.png"
-dest_files=["res://.godot/imported/pixil-frame-0-12.png-10b260599a6c2be606b879a4aa27f94b.ctex"]
+source_file="res://imports/sentury.png"
+dest_files=["res://.godot/imported/sentury.png-74bbb7e81ca62a58642c49aebc94612d.ctex"]
 
 [params]
 
