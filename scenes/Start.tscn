@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://djwihrxn5l817"]
+[gd_scene load_steps=3 format=3 uid="uid://djwihrxn5l817"]
 
-[ext_resource type="Script" path="res://scenes/Start.gd" id="1_qyy2e"]
+[ext_resource type="Script" path="res://src/start.gd" id="1_23hn0"]
+[ext_resource type="TileSet" uid="uid://f3h1x1j8xhtp" path="res://resources/main_tileset.tres" id="2_24psf"]
 
 [node name="Start" type="Node2D"]
-script = ExtResource("1_qyy2e")
+script = ExtResource("1_23hn0")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_24psf")
+format = 2
+layer_0/tile_data = PackedInt32Array(655359, 0, 0, 655342, 1, 0, 655343, 1, 0, 655344, 1, 0, 655345, 1, 0, 655346, 1, 0, 655347, 1, 0, 655348, 1, 0, 655349, 1, 0, 655350, 1, 0, 655351, 1, 0, 655352, 1, 0, 655353, 1, 0, 655354, 0, 0, 655355, 0, 0, 655356, 0, 0, 655357, 0, 0, 655358, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
