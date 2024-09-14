@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvg6u5w0p22mp"]
+
+[ext_resource type="Script" path="res://test.gd" id="1_fcadw"]
+
+[node name="Test" type="Node2D"]
+script = ExtResource("1_fcadw")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 105.0
+offset_top = 110.0
+offset_right = 164.0
+offset_bottom = 141.0
+text = "spawn
+"
+
+[node name="Spawn_point" type="Node2D" parent="."]
+position = Vector2(389, 263)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
