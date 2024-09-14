@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://h1r53evxjbl7"]
+[gd_scene load_steps=4 format=3 uid="uid://bd5ne5q0q45ew"]
 
 [ext_resource type="Script" path="res://scenes/tower block_spawn.gd" id="1_0kaj6"]
 [ext_resource type="Texture2D" uid="uid://xi5qqd8b25so" path="res://imports/sentury.png" id="2_kj1q5"]
