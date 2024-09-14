@@ -7,6 +7,9 @@ class_name tower_block extends Node2D
 
 var click = 0
 
+func _ready():
+	set_block_type(block_type)
+
 func set_block_type(_type: int):
 	image_type.set_image(_type)
 
