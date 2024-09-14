@@ -4,7 +4,8 @@ const SPAWN_OFFSET: int = -10
 
 @export var grid: TileMap
 @export var block_scene: PackedScene
-@onready var timer: Timer = $BlockFallTimier
+@onready var timer: Timer = $BlockFallTimer
+@onready var buffer_timer: Timer = $BufferTimer
 
 var block_definitions: Array = []
 var layers: Dictionary = {}
@@ -12,20 +13,22 @@ var highest_layer: int = 8
 
 var tower_height = 0
 var falling_block: Block
-var falling_block_center_cell_pos: Vector2i
+var falling_block_center_cell_pos: Vector2
 var marked_for_placement: bool = false
+var rng: RandomNumberGenerator
 
 func _ready():
+	rng = RandomNumberGenerator.new()
+	layers[int(8)] = []
 	init_blocks()
 	debug_spawn()
-	layers[8] = []
 
 func debug_spawn():
 	if falling_block != null:
 		return
 
 	var block: Block = block_scene.instantiate()
-	block.set_definition(block_definitions[0])
+	block.set_definition(block_definitions[rng.randi_range(0, 1)])
 	add_child(block)
 
 	spawn(block)
@@ -36,7 +39,6 @@ func init_blocks():
 
 	for key in json:
 		block_definitions.append(BlockDefinition.new(json[key]))
-
 
 func _input(event):
 	if event.is_action_pressed("shift_left"):
@@ -54,6 +56,9 @@ func _input(event):
 	if event.is_action_released("shift_down"):
 		timer.wait_time = 0.6
 
+	if event.is_action_pressed("rotate"):
+		rotate_falling()
+
 func on_timer_timeout():
 	if !marked_for_placement:
 		shift_falling(0, 1)
@@ -62,8 +67,8 @@ func on_timer_timeout():
 
 func check_for_placement():
 	var shouldPlace = false
-	for offset in falling_block.definition.offsets:
-		var cell_to_check = offset + Vector2i(0, 1) + falling_block_center_cell_pos
+	for offset in falling_block.offsets:
+		var cell_to_check = offset + Vector2(0, 1) + falling_block_center_cell_pos
 
 		# if the checked cell's layer is 9, it means the block has touched the ground and should be placed
 		if cell_to_check.y > 8:
@@ -76,7 +81,7 @@ func check_for_placement():
 		if layer < highest_layer:
 			continue
 
-		if layers[layer].has(cell_to_check.x):
+		if layers[int(layer)].has(int(cell_to_check.x)):
 			shouldPlace = true
 			break
 
@@ -94,18 +99,18 @@ func check_for_placement():
 func place_block():
 	var block = falling_block
 
-	for offset in block.definition.offsets:
+	for offset in block.offsets:
 		var pos = offset + falling_block_center_cell_pos
-		
-		if !layers.has(pos.y):
+
+		if !layers.has(int(pos.y)):
 			print("creating layer")
 			print(pos.y)
-			layers[pos.y] = []
+			layers[int(pos.y)] = []
 
 			if pos.y < highest_layer:
 				highest_layer = pos.y
 
-		layers[pos.y].append(pos.x)
+		layers[int(pos.y)].append(int(pos.x))
 
 	print(layers)
 
@@ -132,7 +137,8 @@ func shift_falling(x, y):
 		return
 
 	if x != 0:
-		for offset in falling_block.definition.offsets:
+		print("shift side")
+		for offset in falling_block.offsets:
 			var pos = offset + falling_block_center_cell_pos
 			var x_pos = pos.x + x
 			var y_pos = pos.y
@@ -142,12 +148,56 @@ func shift_falling(x, y):
 				return
 
 			# If the layer of the shift has not been defined, no obstacles are present and thus the block is free to move
-			if !layers.has(y_pos):
+			if !layers.has(int(y_pos)):
 				continue
 
 			# If the cell we are attempting to move into is occupied, block the move
-			if layers[y_pos].has(x_pos):
+			if layers[int(y_pos)].has(int(x_pos)):
 				return
 
-	falling_block_center_cell_pos += Vector2i(x, y)
+	if y != 0:
+		print("shift down")
+		for offset in falling_block.offsets:
+			var pos = offset + falling_block_center_cell_pos + Vector2(0, 1)
+
+			print(pos)
+
+			if pos.y > 8:
+				return
+
+			if !layers.has(int(pos.y)):
+				print("Continue")
+				continue
+
+			if layers[int(pos.y)].has(int(pos.y)):
+				print("Invalid")
+				return
+
+	falling_block_center_cell_pos += Vector2(x, y)
 	falling_block.position = grid.map_to_local(falling_block_center_cell_pos)
+
+func rotate_falling():
+	if falling_block == null:
+		return
+
+	if falling_block.definition.inhibit_rotation:
+		return
+
+	var offsets = falling_block.get_rotated_offsets()
+	for offset in offsets:
+		var cell = offset + falling_block_center_cell_pos
+
+		if cell.y > 8:
+			return
+
+		if cell.x > 5 || cell.x < -6:
+			return
+
+		if !layers.has(int(cell.y)):
+			continue
+
+		if layers[int(cell.y)].has(int(cell.x)):
+			return
+
+	falling_block.offsets = offsets
+	falling_block.rotation_degrees += 90

@@ -1,20 +1,20 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://f3h1x1j8xhtp"]
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://p1cd3h13fktj"]
 
-[ext_resource type="Texture2D" uid="uid://cmcrit7gifwi3" path="res://resources/placeholder_square.tres" id="1_scrnm"]
+[ext_resource type="Texture2D" uid="uid://c6hwsgkc4fxd3" path="res://resources/placeholder.tres" id="1_qhx0o"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vao78"]
-texture = ExtResource("1_scrnm")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oa7os"]
+texture = ExtResource("1_qhx0o")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-0:0/0/modulate = Color(0.099986, 0.099986, 0.099986, 1)
+0:0/0/modulate = Color(0.0495072, 0.42863, 0.0483693, 1)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_14hxd"]
-texture = ExtResource("1_scrnm")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jtmo3"]
+texture = ExtResource("1_qhx0o")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-0:0/0/modulate = Color(0, 0.47, 0.0626667, 1)
+0:0/0/modulate = Color(0.201527, 0.201527, 0.201527, 1)
 
 [resource]
 tile_size = Vector2i(32, 32)
-sources/1 = SubResource("TileSetAtlasSource_14hxd")
-sources/0 = SubResource("TileSetAtlasSource_vao78")
+sources/2 = SubResource("TileSetAtlasSource_oa7os")
+sources/3 = SubResource("TileSetAtlasSource_jtmo3")

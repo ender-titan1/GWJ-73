@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvs6cthqc6h52"]
+[gd_scene load_steps=5 format=3 uid="uid://dvs6cthqc6h52"]
 
 [ext_resource type="Script" path="res://src/block.gd" id="1_cvpmb"]
 [ext_resource type="Texture2D" uid="uid://6amcnjx64u52" path="res://imports/L-Right.png" id="2_jnfgd"]
+
+[sub_resource type="Gradient" id="Gradient_7eb7d"]
+colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pvse4"]
+gradient = SubResource("Gradient_7eb7d")
+width = 10
+height = 10
 
 [node name="Block" type="Node2D"]
 script = ExtResource("1_cvpmb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_jnfgd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_pvse4")
