@@ -2,7 +2,7 @@ extends Sprite2D
 
 var card_image: int = 1
 
-var sentury = preload("res://imports/sentury.png")
+var sentury = preload("res://imports/sentury 2.0.png")
 var icon = preload("res://icon.svg")
 
 func _ready():

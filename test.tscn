@@ -16,4 +16,20 @@ text = "spawn
 [node name="Spawn_point" type="Node2D" parent="."]
 position = Vector2(389, 263)
 
+[node name="Button2" type="Button" parent="."]
+offset_left = 98.0
+offset_top = 153.0
+offset_right = 166.0
+offset_bottom = 184.0
+text = "sentury"
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 121.0
+offset_top = 206.0
+offset_right = 162.0
+offset_bottom = 237.0
+text = "Icon"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
