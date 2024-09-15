@@ -193,37 +193,37 @@ func redraw_preview():
 	preview_block.visible = true
 	preview_block.opacity = 0.35
 
-	var highest_column = null
-	var height = 9
+	var block_pos = Vector2(falling_block_center_cell_pos.x, 8)
+	var valid = false
 
-	# Dumb and inefficient algorithm to find the heighest column the block will fall on
-	for offset in falling_block.offsets:
-		var column = offset.x + falling_block_center_cell_pos.x
-		var column_height = 9
+	# This algorithm is horrible and inefficient but better than the overcomplicated bullshit I tried to write
 
-		for y in layers:
-			if cell_is_occupied(Vector2(column, y)):
-				if y < column_height:
-					column_height = y
-		
-		if column_height < height:
-			height = column_height
-			highest_column = column
+	while !valid:
+		for offset in falling_block.offsets:
+			var pos = offset + block_pos
 			
-	if highest_column == null:
-		highest_column = falling_block.offsets[0].x + falling_block_center_cell_pos.x
+			if cell_is_occupied(pos):
+				valid = false
+				break
 
-	# Find the lowest offset in the matching column
-	var lowest_offset = Vector2(0, 0)
-	for offset in falling_block.offsets:
-		var pos = offset + falling_block_center_cell_pos
+			var clear_view = true
+			for y in layers:
+				var layer = layers[y]
 
-		if pos.x != highest_column:
-			continue
+				if y >= pos.y:
+					continue
 
-		if offset.y > lowest_offset.y:
-			lowest_offset = offset
+				if layer.has(int(pos.x)):
+					clear_view = false
+					break
 
-	# Correctly position the block
-	var inverse_offset = -lowest_offset
-	preview_block.position = grid.map_to_local(Vector2(highest_column, height - 1) + inverse_offset)
+			if !clear_view:
+				valid = false
+				break
+
+			valid = true
+
+		if !valid:
+			block_pos.y -= 1
+
+	preview_block.position = grid.map_to_local(block_pos)
