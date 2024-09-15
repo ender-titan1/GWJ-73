@@ -227,4 +227,3 @@ func redraw_preview():
 	# Correctly position the block
 	var inverse_offset = -lowest_offset
 	preview_block.position = grid.map_to_local(Vector2(highest_column, height - 1) + inverse_offset)
-	
