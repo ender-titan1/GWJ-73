@@ -4,24 +4,8 @@
 			"##",
 			"##"
 		],
-		"center": [
-			0,
-			0
-		],
-		"sprite": "sentury 2.0.png",
-		"rotate": false
-	},
-	"L-Right": {
-		"matrix": [
-			"# ",
-			"# ",
-			"##"
-		],
-		"center": [
-			0,
-			1
-		],
-		"sprite": "L-Right.png"
+		"center": [0, 0],
+		"sprite": "sentury 2.0.png"
 	},
 	"L-Left": {
 		"matrix": [
@@ -29,10 +13,17 @@
 			" #",
 			"##"
 		],
-		"center": [
-			1,
-			1
+		"center": [1, 1],
+		"sprite": "sentury 2.0.png"
+
+	},
+	"L-Right": {
+		"matrix": [
+			"# ",
+			"# ",
+			"##"
 		],
+		"center": [0, 1],
 		"sprite": "sentury 2.0.png"
 	},
 	"I": {
@@ -42,21 +33,7 @@
 			"#",
 			"#"
 		],
-		"center": [
-			0,
-			1
-		],
+		"center": [0, 1],
 		"sprite": "sentury 2.0.png"
-	},
-	"Point": {
-		"matrix": [
-			"#",
-			"#"
-		],
-		"center": [
-			0,
-			1
-		],
-		"sprite": "square.tres"
 	}
 }
