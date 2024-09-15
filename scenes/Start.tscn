@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://djwihrxn5l817"]
+[gd_scene load_steps=5 format=3 uid="uid://djwihrxn5l817"]
 
 [ext_resource type="Script" path="res://src/start.gd" id="1_23hn0"]
 [ext_resource type="TileSet" uid="uid://f3h1x1j8xhtp" path="res://resources/main_tileset.tres" id="2_24psf"]
 [ext_resource type="PackedScene" uid="uid://dvs6cthqc6h52" path="res://scenes/Block.tscn" id="2_ffa6c"]
 [ext_resource type="Texture2D" uid="uid://cmcrit7gifwi3" path="res://resources/placeholder_square.tres" id="3_oc4t0"]
-[ext_resource type="PackedScene" uid="uid://de7xoedyb5jdo" path="res://scenes/game_shop.tscn" id="5_mp7af"]
 
 [node name="Start" type="Node2D" node_paths=PackedStringArray("grid")]
 script = ExtResource("1_23hn0")
@@ -25,7 +24,5 @@ texture = ExtResource("3_oc4t0")
 
 [node name="BlockFallTimier" type="Timer" parent="."]
 wait_time = 0.6
-
-[node name="GameShop" parent="." instance=ExtResource("5_mp7af")]
 
 [connection signal="timeout" from="BlockFallTimier" to="." method="on_timer_timeout"]

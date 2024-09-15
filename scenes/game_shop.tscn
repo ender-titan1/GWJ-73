@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://de7xoedyb5jdo"]
-
-[ext_resource type="Script" path="res://src/shop_open.gd" id="1_bkdbf"]
+[gd_scene format=3 uid="uid://de7xoedyb5jdo"]
 
 [node name="GameShop" type="Control"]
 layout_mode = 3
@@ -31,8 +29,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MenuButton" type="MenuButton" parent="VBoxContainer/ColorRect/HBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/ColorRect/HBoxContainer"]
 layout_mode = 2
 text = "shop"
-flat = false
-script = ExtResource("1_bkdbf")
