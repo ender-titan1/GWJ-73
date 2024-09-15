@@ -9,7 +9,6 @@ const SPAWN_OFFSET: int = -10
 
 var block_definitions: Array = []
 var layers: Dictionary = {}
-var highest_layer: int = 8
 
 var tower_height = 0
 var falling_block: Block
@@ -97,14 +96,12 @@ func place_block():
 			print(pos.y)
 			layers[int(pos.y)] = []
 
-			if pos.y < highest_layer:
-				highest_layer = pos.y
-
 		layers[int(pos.y)].append(int(pos.x))
 
 	print(layers)
 
 	block.opacity = 1
+	preview_block.visible = false
 
 	timer.stop()
 	falling_block = null
@@ -124,6 +121,7 @@ func spawn(block: Node2D):
 	falling_block_center_cell_pos = cell_pos
 	timer.start()
 
+	preview_block.visible = true
 	preview_block.offsets = falling_block.definition.offsets
 	preview_block.rotation_degrees = 0
 	redraw_preview()
@@ -193,6 +191,14 @@ func redraw_preview():
 	preview_block.visible = true
 	preview_block.opacity = 0.35
 
+	var pos = get_prediction_center_pos()
+
+	preview_block.position = grid.map_to_local(pos)
+
+	if pos.y <= falling_block_center_cell_pos.y:
+		preview_block.visible = false
+
+func get_prediction_center_pos() -> Vector2:
 	var block_pos = Vector2(falling_block_center_cell_pos.x, 8)
 	var valid = false
 
@@ -226,4 +232,4 @@ func redraw_preview():
 		if !valid:
 			block_pos.y -= 1
 
-	preview_block.position = grid.map_to_local(block_pos)
+	return block_pos
