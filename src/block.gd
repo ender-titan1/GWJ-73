@@ -3,8 +3,14 @@ class_name Block extends Node2D
 var sprite: Sprite2D
 var definition: BlockDefinition
 var offsets: Array
+var opacity: float:
+	set(value):
+		modulate = Color(1, 1, 1, value)
 
 func set_definition(def: BlockDefinition):
+	if definition != null && definition.name == def.name:
+		return
+
 	definition = def
 	sprite = $Sprite2D
 	sprite.texture = definition.texture
@@ -12,7 +18,7 @@ func set_definition(def: BlockDefinition):
 	var pxSize = def.size * 32
 	var shift00 = Vector2(pxSize.x / 2 - 16, pxSize.y / 2 - 16)
 	var shift = shift00 - def.center * 32
-	sprite.position += shift
+	sprite.position = shift
 
 	offsets = def.offsets
 

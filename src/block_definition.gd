@@ -5,10 +5,12 @@ var center: Vector2
 var texture: Texture2D
 var size: Vector2i
 var inhibit_rotation: bool
+var name: String
 
-func _init(json_dict: Dictionary={}):
+func _init(key: String, json_dict: Dictionary={}):
 	var string_array = json_dict["matrix"]
 
+	name = key
 	offsets = []
 	size = Vector2i(string_array[0].length(), string_array.size())
 	center = Vector2(json_dict["center"][0], json_dict["center"][1])

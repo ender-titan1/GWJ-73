@@ -19,8 +19,7 @@ layer_0/tile_data = PackedInt32Array(655359, 3, 0, 655342, 2, 0, 655343, 2, 0, 6
 [node name="BlockFallTimer" type="Timer" parent="."]
 wait_time = 0.6
 
-[node name="BufferTimer" type="Timer" parent="."]
-wait_time = 0.1
+[node name="PreviewBlock" parent="." instance=ExtResource("2_ffa6c")]
+visible = false
 
 [connection signal="timeout" from="BlockFallTimer" to="." method="on_timer_timeout"]
-[connection signal="timeout" from="BufferTimer" to="." method="on_buffer_timeout"]
