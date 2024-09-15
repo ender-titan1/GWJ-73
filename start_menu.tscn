@@ -4,9 +4,11 @@
 
 [node name="StartMenu" type="Node2D"]
 
-[node name="Menu" parent="." instance=ExtResource("1_jydug")]
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Menu" parent="Node2D" instance=ExtResource("1_jydug")]
 anchors_preset = 9
 anchor_right = 0.0
 grow_horizontal = 1
-
-[node name="Camera2D" type="Camera2D" parent="."]
