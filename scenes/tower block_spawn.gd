@@ -1,17 +1,20 @@
 class_name tower_block extends Node2D
 
 @export var block_type: int = 0
+@export var block_cost: int = 0
 
 @onready var image_type: Sprite2D = $image
 @onready var block_pos: Node2D = $Position
+@onready var cost: Label = $Label
 
 var click = 0
 
 func _ready():
-	set_block_type(block_type)
+	set_block_type(block_type, block_cost)
 
-func set_block_type(_type: int):
+func set_block_type(_type: int, _cost: int):
 	image_type.set_image(_type)
+	cost.set_text(str(_cost))
 
 func _process(delta):
 	if click == 1:
