@@ -5,7 +5,7 @@
 			"##"
 		],
 		"center": [0, 0],
-		"sprite": "sentury 2.0.png"
+		"sprite": "heal_left.png"
 	},
 	"L-Left": {
 		"matrix": [
@@ -14,7 +14,7 @@
 			"##"
 		],
 		"center": [1, 1],
-		"sprite": "sentury 2.0.png"
+		"sprite": "heal_right.png"
 
 	},
 	"L-Right": {
