@@ -109,7 +109,7 @@ func place_block():
 	block.opacity = 1
 	preview_block.visible = false
 
-=======
+
 			if pos.y < highest_layer:
 				highest_layer = pos.y
 
@@ -142,7 +142,7 @@ func spawn(block: Node2D):
 	preview_block.rotation_degrees = 0
 	redraw_preview()
 
-=======
+
 >>>>>>> main
 func shift_falling(x, y):
 	if falling_block == null:
@@ -256,5 +256,4 @@ func get_prediction_center_pos() -> Vector2:
 			block_pos.y -= 1
 
 	return block_pos
-=======
 >>>>>>> main
