@@ -8,7 +8,6 @@ const SPAWN_OFFSET: int = -10
 
 var block_definitions: Array = []
 var layers: Dictionary = {}
-var highest_layer: int = 8
 
 var tower_height = 0
 var falling_block: Block
@@ -102,6 +101,15 @@ func place_block():
 			print(pos.y)
 			layers[pos.y] = []
 
+<<<<<<< main-safe
+		layers[int(pos.y)].append(int(pos.x))
+
+	print(layers)
+
+	block.opacity = 1
+	preview_block.visible = false
+
+=======
 			if pos.y < highest_layer:
 				highest_layer = pos.y
 
@@ -109,6 +117,7 @@ func place_block():
 
 	print(layers)
 
+>>>>>>> main
 	timer.stop()
 	falling_block = null
 	marked_for_placement = false
@@ -127,6 +136,14 @@ func spawn(block: Node2D):
 	falling_block_center_cell_pos = cell_pos
 	timer.start()
 
+<<<<<<< main-safe
+	preview_block.visible = true
+	preview_block.offsets = falling_block.definition.offsets
+	preview_block.rotation_degrees = 0
+	redraw_preview()
+
+=======
+>>>>>>> main
 func shift_falling(x, y):
 	if falling_block == null:
 		return
@@ -151,3 +168,93 @@ func shift_falling(x, y):
 
 	falling_block_center_cell_pos += Vector2i(x, y)
 	falling_block.position = grid.map_to_local(falling_block_center_cell_pos)
+<<<<<<< main-safe
+	redraw_preview()
+
+func rotate_falling():
+	if falling_block == null:
+		return
+
+	if falling_block.definition.inhibit_rotation:
+		return
+
+	var offsets = falling_block.get_rotated_offsets()
+	for offset in offsets:
+		var cell = offset + falling_block_center_cell_pos
+
+		if cell_is_occupied(cell):
+			return
+
+	falling_block.offsets = offsets
+	falling_block.rotation_degrees += 90
+
+	preview_block.offsets = offsets
+	preview_block.rotation_degrees += 90
+
+func cell_is_occupied(cell: Vector2) -> bool:
+	var x = cell.x
+	var y = cell.y
+
+	if y > 8:
+		return true
+
+	if x > 5 || x < -6:
+		return true
+
+	if !layers.has(int(y)):
+		return false
+
+	if layers[int(y)].has(int(x)):
+		return true
+
+	return false
+
+func redraw_preview():
+	preview_block.set_definition(falling_block.definition)
+	preview_block.visible = true
+	preview_block.opacity = 0.35
+
+	var pos = get_prediction_center_pos()
+
+	preview_block.position = grid.map_to_local(pos)
+
+	if pos.y <= falling_block_center_cell_pos.y:
+		preview_block.visible = false
+
+func get_prediction_center_pos() -> Vector2:
+	var block_pos = Vector2(falling_block_center_cell_pos.x, 8)
+	var valid = false
+
+	# This algorithm is horrible and inefficient but better than the overcomplicated bullshit I tried to write
+
+	while !valid:
+		for offset in falling_block.offsets:
+			var pos = offset + block_pos
+			
+			if cell_is_occupied(pos):
+				valid = false
+				break
+
+			var clear_view = true
+			for y in layers:
+				var layer = layers[y]
+
+				if y >= pos.y:
+					continue
+
+				if layer.has(int(pos.x)):
+					clear_view = false
+					break
+
+			if !clear_view:
+				valid = false
+				break
+
+			valid = true
+
+		if !valid:
+			block_pos.y -= 1
+
+	return block_pos
+=======
+>>>>>>> main
