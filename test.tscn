@@ -30,6 +30,14 @@ offset_right = 162.0
 offset_bottom = 237.0
 text = "Icon"
 
+[node name="Button4" type="Button" parent="."]
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 48.0
+offset_bottom = 34.0
+text = "shop"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_4_pressed"]

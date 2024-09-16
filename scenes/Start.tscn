@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://djwihrxn5l817"]
+[gd_scene load_steps=5 format=3 uid="uid://djwihrxn5l817"]
 
 [ext_resource type="Script" path="res://src/start.gd" id="1_23hn0"]
-[ext_resource type="TileSet" uid="uid://p1cd3h13fktj" path="res://resources/main_tileset.tres" id="2_24psf"]
+[ext_resource type="TileSet" uid="uid://f3h1x1j8xhtp" path="res://resources/main_tileset.tres" id="2_24psf"]
 [ext_resource type="PackedScene" uid="uid://dvs6cthqc6h52" path="res://scenes/Block.tscn" id="2_ffa6c"]
+[ext_resource type="Texture2D" uid="uid://cmcrit7gifwi3" path="res://resources/placeholder_square.tres" id="3_oc4t0"]
 
 [node name="Start" type="Node2D" node_paths=PackedStringArray("grid")]
 script = ExtResource("1_23hn0")
@@ -12,14 +13,16 @@ block_scene = ExtResource("2_ffa6c")
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_24psf")
 format = 2
-layer_0/tile_data = PackedInt32Array(655359, 3, 0, 655342, 2, 0, 655343, 2, 0, 655344, 2, 0, 655345, 2, 0, 655346, 2, 0, 655347, 2, 0, 655348, 2, 0, 655349, 2, 0, 655350, 2, 0, 655351, 2, 0, 655352, 2, 0, 655353, 2, 0, 655354, 3, 0, 655355, 3, 0, 655356, 3, 0, 655357, 3, 0, 655358, 3, 0, 589824, 3, 0, 589825, 3, 0, 589826, 3, 0, 589827, 3, 0, 589828, 3, 0, 589829, 3, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0, 589833, 2, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 589838, 2, 0, 589839, 2, 0, 589840, 2, 0, 589841, 2, 0)
+layer_0/tile_data = PackedInt32Array(655359, 0, 0, 655342, 1, 0, 655343, 1, 0, 655344, 1, 0, 655345, 1, 0, 655346, 1, 0, 655347, 1, 0, 655348, 1, 0, 655349, 1, 0, 655350, 1, 0, 655351, 1, 0, 655352, 1, 0, 655353, 1, 0, 655354, 0, 0, 655355, 0, 0, 655356, 0, 0, 655357, 0, 0, 655358, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="BlockFallTimer" type="Timer" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.313726)
+texture = ExtResource("3_oc4t0")
+
+[node name="BlockFallTimier" type="Timer" parent="."]
 wait_time = 0.6
 
-[node name="PreviewBlock" parent="." instance=ExtResource("2_ffa6c")]
-visible = false
-
-[connection signal="timeout" from="BlockFallTimer" to="." method="on_timer_timeout"]
+[connection signal="timeout" from="BlockFallTimier" to="." method="on_timer_timeout"]
