@@ -101,7 +101,6 @@ func place_block():
 			print(pos.y)
 			layers[pos.y] = []
 
-<<<<<<< main-safe
 		layers[int(pos.y)].append(int(pos.x))
 
 	print(layers)
@@ -110,14 +109,14 @@ func place_block():
 	preview_block.visible = false
 
 
-			if pos.y < highest_layer:
-				highest_layer = pos.y
+	if pos.y < highest_layer:
+		highest_layer = pos.y
 
-		layers[pos.y].append(pos.x)
+	layers[pos.y].append(pos.x)
 
 	print(layers)
 
->>>>>>> main
+
 	timer.stop()
 	falling_block = null
 	marked_for_placement = false
@@ -136,14 +135,14 @@ func spawn(block: Node2D):
 	falling_block_center_cell_pos = cell_pos
 	timer.start()
 
-<<<<<<< main-safe
+
 	preview_block.visible = true
 	preview_block.offsets = falling_block.definition.offsets
 	preview_block.rotation_degrees = 0
 	redraw_preview()
 
 
->>>>>>> main
+
 func shift_falling(x, y):
 	if falling_block == null:
 		return
@@ -168,7 +167,7 @@ func shift_falling(x, y):
 
 	falling_block_center_cell_pos += Vector2i(x, y)
 	falling_block.position = grid.map_to_local(falling_block_center_cell_pos)
-<<<<<<< main-safe
+
 	redraw_preview()
 
 func rotate_falling():
@@ -256,4 +255,4 @@ func get_prediction_center_pos() -> Vector2:
 			block_pos.y -= 1
 
 	return block_pos
->>>>>>> main
+
