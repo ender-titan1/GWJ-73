@@ -30,6 +30,15 @@ func _ready():
 	shop_menu.connect("index_pressed", 
 	Callable(self, "_clicked_shop_item"))
 
+func new_item():
+	type = rng.randi_range(1,3)
+	if type == 1:
+		shop_menu.add_icon_item(type_1,"30")
+	elif type == 2:
+		shop_menu.add_icon_item(type_2,"50")
+	elif type == 3:
+		shop_menu.add_icon_item(type_3,"10")
+
 func _clicked_shop_item(index: int):
 	match index:
 		0:
@@ -39,6 +48,7 @@ func _clicked_shop_item(index: int):
 				Money -= _c
 				money_display(Money)
 				shop_menu.remove_item(index)
+				new_item()
 		1:
 			print(shop_menu.get_item_text(index))
 			var _c = int(shop_menu.get_item_text(index))
@@ -46,6 +56,7 @@ func _clicked_shop_item(index: int):
 				Money -= _c
 				money_display(Money)
 				shop_menu.remove_item(index)
+				new_item()
 		2:
 			print(shop_menu.get_item_text(index))
 			var _c = int(shop_menu.get_item_text(index))
@@ -53,4 +64,5 @@ func _clicked_shop_item(index: int):
 				Money -= _c
 				money_display(Money)
 				shop_menu.remove_item(index)
+				new_item()
 			
